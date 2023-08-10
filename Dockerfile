@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 ARG configuration=production
 RUN npm run build -- --mode $configuration # production stage
-FROM nginx:1.23.3-alpine as production-stage
+FROM nginx:1.25.1-alpine as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY /nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
